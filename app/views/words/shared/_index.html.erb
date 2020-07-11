@@ -1,0 +1,11 @@
+  <%= link_to word_path(words) do %>
+    <div class="col-md-3">
+      <%= words.name %>
+      <%= words.english_name %><br>
+      <%= words.description %><br>
+      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+      <%= words.favorites.count %>
+      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+      <%= words.comments.count %>
+    </div>
+  <% end %>

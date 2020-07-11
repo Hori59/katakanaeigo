@@ -13,9 +13,38 @@
  *= require_tree .
  *= require_self
  */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 body {
   // background-color: F8F8F8;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border-radius: 50%;
+}
+
+//ヘッダー
+header {
+  height: 60px;
+}
+.header_list {
+  display: flex;
+  align-items: center;
+}
+.header_list li:first-child {
+  margin-right: auto;
 }
 
 //各ページの見出し
@@ -31,6 +60,7 @@ h2 {
 .form-group {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .form-group .form-label {
   flex: 1;

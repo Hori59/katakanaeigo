@@ -9,7 +9,7 @@
 
         <div class="form-group">
           <%= f.label :id, "ID", class: "form-label" %>
-          <%= f.text_field :id, autofocus: true, autocomplete: "id", class: "form-control", placeholder: "半角英数" %>
+          <%= f.text_field :id, autofocus: true, autocomplete: "id", class: "form-control", placeholder: "半角英数1文字以上15文字以下" %>
         </div>
 
         <div class="form-group">
@@ -24,7 +24,7 @@
 
         <div class="form-group">
           <%= f.label :password, "パスワード", class: "form-label" %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "半角英数#{@minimum_password_length}文字から" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "半角英数#{@minimum_password_length}文字以上#{@maximum_password_length}文字以下" %>
         </div>
 
         <div class="form-group">
@@ -36,7 +36,7 @@
           <%= f.submit "登録", class: "btn" %>
         </div>
       <% end %>
-    <!-- <%= render "users/shared/links" %> -->
+      <%= render "users/shared/links" %>
     </div>
 
   </div>

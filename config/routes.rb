@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
+  # 管理者
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  # デバイス
+  # ユーザのログイン/ログアウト機能
   devise_for :users, skip: :all
   devise_scope :user do
     # 新規登録画面表示
@@ -19,9 +21,22 @@ Rails.application.routes.draw do
     # ログアウト
     delete 'users/log_out',     to: 'users/sessions#destroy',      as: :destroy_user_session
 
+    # パスワードをお忘れですか？の画面を表示
+    get '/users/password/new',  to: 'users/passwords#new',         as: :new_user_password
+    # パスワード変更メール送信
+    post 'users/password',      to: 'users/passwords#create',      as: :post_user_password
     # パスワード変更画面を表示
     get '/users/password/edit', to: 'users/passwords#edit',        as: :edit_user_password
     # パスワードを変更
     patch '/users/password',    to: 'users/passwords#update',      as: :user_password
   end
+
+  # ルート設定
+  root 'words#index'
+
+  # ワード周辺機能
+  resources :words
+
+  # ユーザ周辺機能
+  resources :users, only: [:show, :edit, :update]
 end
