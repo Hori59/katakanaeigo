@@ -19,18 +19,17 @@
   box-sizing: border-box;
 }
 
-body {
-  // background-color: F8F8F8;
+//共通フォント
+html, body {
+  color: #555555;
 }
 
+//リストの・を削除
 li {
   list-style: none;
 }
 
-a {
-  text-decoration: none;
-}
-
+//アイコンを丸に設定
 img {
   border-radius: 50%;
 }
@@ -45,6 +44,10 @@ header {
 }
 .header_list li:first-child {
   margin-right: auto;
+}
+
+a {
+  color: #555555;
 }
 
 //各ページの見出し
@@ -67,4 +70,44 @@ h2 {
 }
 .form-group .form-control {
   flex: 3;
+}
+
+//投稿一覧
+.word_title {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.wrap{
+  // width: 90%;
+  // max-width: 800px;
+  margin: 0 auto;
+}
+#tab-menu{
+  margin: 0;
+  padding: 0;
+}
+#tab-menu li {
+  float: left;
+  // list-style-type: none;
+  width: 25%;
+}
+#tab-menu a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #555555;
+  border: 1px solid #555555;
+  border-bottom: none;
+}
+#tab-menu .active {
+  background: #fff;
+  color: #555555;
+}
+#tab-contents .tab {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #555555;
+  border-top: none;
 }

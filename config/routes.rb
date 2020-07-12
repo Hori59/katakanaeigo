@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     get  'users/sign_up',       to: 'users/registrations#new',     as: :new_user_registration
     # 新規登録
     post 'users',               to: 'users/registrations#create',  as: :user_registration
+    # ユーザ編集画面表示
+    get 'users/edit',             to: 'users/registrations#edit',  as: :edit_user_registration
+    # ユーザ上書き
+    put 'users',             to: 'users/registrations#update',     as: :update_user_registration
     # ユーザ削除
     delete 'users',             to: 'users/registrations#destroy', as: :destroy_user_registration
 
@@ -38,5 +42,5 @@ Rails.application.routes.draw do
   resources :words
 
   # ユーザ周辺機能
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show]
 end

@@ -23,7 +23,7 @@ User.create!(id: "test",
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
-  User.create!(id: id,
+  User.create!(id: id.to_s,
                name:  name,
                email: email,
                password:              password,

@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
+  # deviseコントローラーにストロングパラメータを追加
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-    protected
+  protected
 
-    def configure_permitted_parameters
-      added_attrs = [:id, :name, :email, :profile_image, :password, :password_confirmation]
-      devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-      devise_parameter_sanitizer.permit :log_in, keys: added_attrs
-    end
+  def configure_permitted_parameters
+    # サインアップ時にid、nameのストロングパラメータを追加
+    devise_parameter_sanitizer.permit :sign_up, keys: [:id, :name]
+
+    # アカウント編集時にid、name、self_introductionのストロングパラメータを追加
+    devise_parameter_sanitizer.permit(:account_update, keys: [:id, :name, :self_introduction, :profile_image])
+  end
 end
