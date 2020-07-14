@@ -1,13 +1,20 @@
 <div class="row">
   <!-- タグ一覧 -->
   <div class="col-md-3">
-    <h2>タグ一覧</h2>
+    <div class="row side_menu">
+      <div class="col-md-12">
+        <h2>タグ一覧</h2>
+      </div>
+      <div class="col-md-12">
+        <h2>人気ワード</h2>
+      </div>
+    </div>
   </div>
 
   <!-- 投稿一覧（作成日降順） -->
   <div class="col-md-9">
     <h2>投稿一覧</h2>
-    <div class="row">
+    <div class="row word_index">
       <%= render partial: 'words/shared/index', collection: @words, as: 'words' %>
     </div>
   </div>

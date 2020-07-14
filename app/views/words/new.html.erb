@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col">
+    <h2><%= @title %></h2>
+    <%= render partial: 'words/shared/form', locals: { word: @word } %>
+    <div class="back_btn">
+      <%= link_to "戻る", words_path %>
+    </div>
+  </div>
+</div>

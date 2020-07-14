@@ -5,6 +5,11 @@ class Word < ApplicationRecord
   has_many   :tag_maps,  dependent: :destroy
   has_many   :tags,      through: :tag_maps
 
+  # 投稿のバリデーション
+  validates :name, presence: true
+  validates :description, presence: true
+
+
   def favorited_by?(user) # 引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べる。存在していればtrue、存在していなければfalseを返す
     favorites.where(user_id: user.id).exists?
   end
