@@ -3,11 +3,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id].to_s)
-    @words = Word.includes(:user).where(id: @user.id).order(created_at: :desc).page(params[:page]).per(10)
-    if @words.empty?
-      @message = "投稿はありません"
+    if @user == current_user # user本人だった場合投稿を全て取得
+      @words = Word.includes(:user).where(user_id: @user.id).order(created_at: :desc).page(params[:page]).per(10)
+      if @words.empty?
+        @message = "投稿はありません"
+      end
+    else # user本人でない場合は公開中の投稿のみ取得
+      @words = Word.includes(:user).where(user_id: @user.id, is_published: true).order(created_at: :desc).page(params[:page]).per(10)
+      if @words.empty?
+        @message = "投稿はありません"
+      end
     end
-    # binding.pry
   end
 
   def user_params

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="row side_menu">
+      <div class="col-md-12">
+        <h2>タグ一覧</h2>
+      </div>
+      <div class="col-md-12">
+        <h2>人気ワード</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="word_body">
+      <ul id="word_title">
+        <li class="bold-title"><%= @word.name %></li>
+        <li><span class="word_subtitle">英語名：<%= @word.english_name %></span></li>
+        <li class="favorite_space">
+          <span class="word_subtitle"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <%= @word.favorites.count %></span>
+        </li>
+        <% if @word.user_id.to_s == current_user.id.to_s %>
+          <li><%= status(@word.is_published) %></li>
+          <li><%= link_to "編集", edit_word_path(@word), class: "btn" %></li>
+          <li><%= link_to "削除", word_path(@word), method: :delete, class: "btn" %></li>
+        <% end %>
+      </ul>
+      <div class="word_description"><%= simple_format(@word.description) %></div>
+      <div class="user_info">
+        <%= link_to user_path(@word.user_id) do %>
+          <%= attachment_image_tag @word.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpeg" %>
+          <span><%= @word.user.name %></span>
+        <% end %>
+      </div>
+    </div>
+    <div class="back_btn">
+      <%= link_to "戻る", words_path %>
+    </div>
+  </div>
+</div>

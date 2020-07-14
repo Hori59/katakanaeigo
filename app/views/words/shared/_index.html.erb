@@ -1,10 +1,22 @@
   <%= link_to word_path(words) do %>
-    <div class="col-md-3">
-      <span class="word_title"><%= words.name %></span><br>
-      <%= words.description %><br>
-      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-      <%= words.favorites.count %>
-      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-      <%= words.comments.count %>
+    <div class="words_container col-xs-12 col-md-3">
+      <div class="words_box">
+        <h4 class="words_name">
+          <%= words.name %>
+        </h4>
+        <p class="words_description">
+          <%= words.description.truncate(40) %>
+        </p>
+        <p class="words_items">
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+          <%= words.favorites.count %>
+          <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+          <%= words.comments.count %>
+          <!-- ユーザ本人がマイページに来た場合のみ投稿のステータスを表示 -->
+          <% if request.path == "/users/#{words.user_id}" && words.user_id == current_user.id %>
+            <span class="word_status"><%= status(words.is_published) %></span>
+          <% end %>
+        </p>
+      </div>
     </div>
   <% end %>
