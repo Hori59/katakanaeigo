@@ -42,13 +42,17 @@ header {
   height: 70px;
   display: flex;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
 }
 .header_list li:first-child {
   margin-right: auto;
 }
 
-a {
+html a {
   color: #555555;
+  text-decoration: none;
 }
 
 //各ページの見出し

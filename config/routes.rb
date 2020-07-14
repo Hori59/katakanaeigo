@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   # ワード周辺機能
   resources :words do
+    resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :edit, :update, :destroy]
   end
 

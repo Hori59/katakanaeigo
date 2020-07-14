@@ -7,16 +7,21 @@
         <p class="words_description">
           <%= words.description.truncate(40) %>
         </p>
-        <p class="words_items">
-          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-          <%= words.favorites.count %>
-          <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-          <%= words.comments.count %>
-          <!-- ログイン済みかつユーザ本人がマイページに来た場合のみ投稿のステータスを表示 -->
-          <% if user_signed_in? && ( words.user_id == current_user.id ) && (request.path == "/users/#{words.user_id}" ) %>
-            <span class="word_status"><%= status(words.is_published) %></span>
-          <% end %>
-        </p>
+        <div class="words_items">
+          <ul class="words_item">
+            <%= render partial: 'favorites/shared/favorite', locals: { word: words } %>
+            <li>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+              <%= words.comments.count %>
+            </li>
+            <!-- ログイン済みかつユーザ本人がマイページに来た場合のみ投稿のステータスを表示 -->
+            <% if user_signed_in? && ( words.user_id == current_user.id ) && (request.path == "/users/#{words.user_id}" ) %>
+              <li class="word_status">
+                <%= status(words.is_published) %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   <% end %>
