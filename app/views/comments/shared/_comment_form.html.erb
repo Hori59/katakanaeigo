@@ -1,0 +1,10 @@
+<div class="new_comment">
+  <%= form_for [word, comment] do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, autofocus: true, autocomplete: "body", class: "form-control", placeholder: "ここにコメントを入力してください" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit '保存', class: "btn" %>
+    </div>
+  <% end %>
+</div>

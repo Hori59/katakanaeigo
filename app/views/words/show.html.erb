@@ -12,29 +12,40 @@
   <div class="col-md-9">
     <!-- 投稿本文 -->
     <div class="word_body">
-      <ul id="word_title">
-        <li class="bold-title"><%= @word.name %></li>
-        <li><span class="word_subtitle">英語名：<%= @word.english_name %></span></li>
-        <li class="favorite_space">
-          <span class="word_subtitle"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+      <div class="word_space">
+        <ul id="word_title">
+          <li class="bold-title"><%= @word.name %></li>
+          <li><span class="word_subtitle">英語名：<%= @word.english_name %></span></li>
+          <li class="favorite_space">
+            <span class="word_subtitle"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             <%= @word.favorites.count %></span>
-        </li>
-        <% if user_signed_in? && current_user.to_s == @word.user_id.to_s %>
-          <li><%= status(@word.is_published) %></li>
-          <li><%= link_to "編集", edit_word_path(@word), class: "btn" %></li>
-          <li><%= link_to "削除", word_path(@word), method: :delete, class: "btn" %></li>
+          </li>
+          <% if user_signed_in? && current_user.id == @word.user_id %>
+            <li><%= status(@word.is_published) %></li>
+            <li><%= link_to "編集", edit_word_path(@word), class: "btn" %></li>
+            <li><%= link_to "削除", word_path(@word), method: :delete, class: "btn" %></li>
+          <% end %>
+        </ul>
+        <div class="word_description"><%= simple_format(@word.description) %></div>
+        <div class="user_info">
+          <%= link_to user_path(@word.user_id) do %>
+            <%= attachment_image_tag @word.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpeg" %>
+            <span><%= @word.user.name %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="comments_space">
+        <!-- コメント新規投稿 -->
+        <% if user_signed_in? %>
+         <%= render partial: 'comments/shared/comment_form', locals: { word: @word, comment: @comment } %>
         <% end %>
-      </ul>
-      <div class="word_description"><%= simple_format(@word.description) %></div>
-      <div class="user_info">
-        <%= link_to user_path(@word.user_id) do %>
-          <%= attachment_image_tag @word.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpeg" %>
-          <span><%= @word.user.name %></span>
-        <% end %>
+        <!-- コメント一覧 -->
+        <%= render partial: 'comments/shared/comment_index', locals: { word: @word } %>
       </div>
     </div>
     <div class="back_btn">
-      <% if request.referer&.include?("/words/#{@word.id}/edit") %>
+      <!-- 直前のURLで戻り先を分岐 -->
+      <% if request.referer&.include?("/words/#{@word.id}") %>
         <%= link_to "戻る", words_path %>
       <% else %>
         <%= link_to "戻る", :back %>

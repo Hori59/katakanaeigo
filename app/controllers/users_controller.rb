@@ -15,15 +15,9 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+
   def user_params
     params.require(:user).permit(:id, :name, :profile_image, :self_introduction)
-  end
-
-  # ユーザ本人以外のアクセスを禁止
-  def correct_user
-    @user = User.find(params[:id])
-    unless @user.id == current_user.id
-      redirect_to root_path
-    end
   end
 end

@@ -1,6 +1,6 @@
 class WordsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :correct_user!, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # 投稿一覧 全ワードのうち公開中のもののみ取得
   def index
@@ -38,6 +38,8 @@ class WordsController < ApplicationController
   # 投稿詳細表示
   def show
     @word = Word.find(params[:id])
+    @comment = Comment.new
+    # binding.pry
   end
 
   # 投稿編集画面表示
