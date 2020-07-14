@@ -9,7 +9,10 @@
       <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
       <%= @user.favorites.count %><br>
       <%= @user.self_introduction %><br>
-      <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn" %>
+      <!-- ログイン済みかつ本人の場合のみ編集ボタンを表示 -->
+      <% if user_signed_in? && @user.id == current_user.id %>
+        <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn" %>
+      <% end %>
     </div>
   </div>
 

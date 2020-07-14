@@ -12,8 +12,8 @@
           <%= words.favorites.count %>
           <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
           <%= words.comments.count %>
-          <!-- ユーザ本人がマイページに来た場合のみ投稿のステータスを表示 -->
-          <% if request.path == "/users/#{words.user_id}" && words.user_id == current_user.id %>
+          <!-- ログイン済みかつユーザ本人がマイページに来た場合のみ投稿のステータスを表示 -->
+          <% if user_signed_in? && ( words.user_id == current_user.id ) && (request.path == "/users/#{words.user_id}" ) %>
             <span class="word_status"><%= status(words.is_published) %></span>
           <% end %>
         </p>
