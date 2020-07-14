@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   root 'words#index'
 
   # ワード周辺機能
-  resources :words
+  resources :words do
+    resources :comments, only: [:create, :edit, :destroy]
+  end
 
   # ユーザ周辺機能
   resources :users, only: [:show]

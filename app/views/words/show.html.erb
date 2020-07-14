@@ -10,6 +10,7 @@
     </div>
   </div>
   <div class="col-md-9">
+    <!-- 投稿本文 -->
     <div class="word_body">
       <ul id="word_title">
         <li class="bold-title"><%= @word.name %></li>
@@ -18,7 +19,7 @@
           <span class="word_subtitle"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             <%= @word.favorites.count %></span>
         </li>
-        <% if @word.user_id.to_s == current_user.id.to_s %>
+        <% if user_signed_in? && current_user.to_s == @word.user_id.to_s %>
           <li><%= status(@word.is_published) %></li>
           <li><%= link_to "編集", edit_word_path(@word), class: "btn" %></li>
           <li><%= link_to "削除", word_path(@word), method: :delete, class: "btn" %></li>
@@ -33,7 +34,11 @@
       </div>
     </div>
     <div class="back_btn">
-      <%= link_to "戻る", words_path %>
+      <% if request.referer&.include?("/words/#{@word.id}/edit") %>
+        <%= link_to "戻る", words_path %>
+      <% else %>
+        <%= link_to "戻る", :back %>
+      <% end %>
     </div>
   </div>
 </div>
