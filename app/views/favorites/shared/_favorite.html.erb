@@ -1,0 +1,31 @@
+<% if user_signed_in? %>
+  <% if word.favorited_by?(current_user) %>
+    <!-- いいね済みの場合、削除ボタンを表示 -->
+    <li class="favorite_space">
+      <%= link_to word_favorites_path(word), method: :delete do %>
+        <span class="word_subtitle">
+          <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+          <%= word.favorites.count %>
+        </span>
+      <% end %>
+    </li>
+  <% else %>
+    <!-- 未いいねの場合、いいね投稿ボタンを表示 -->
+    <li class="favorite_space">
+      <%= link_to word_favorites_path(word), method: :post do %>
+        <span class="word_subtitle">
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+          <%= word.favorites.count %>
+        </span>
+      <% end %>
+    </li>
+  <% end %>
+<% else%>
+  <!-- 未ログインユーザにはいいねボタンのリンクを出さない -->
+  <li class="favorite_space">
+    <span class="word_subtitle">
+      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+      <%= word.favorites.count %>
+    </span>
+  </li>
+<% end %>

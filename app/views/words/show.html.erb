@@ -16,10 +16,8 @@
         <ul id="word_title">
           <li class="bold-title"><%= @word.name %></li>
           <li><span class="word_subtitle">英語名：<%= @word.english_name %></span></li>
-          <li class="favorite_space">
-            <span class="word_subtitle"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-            <%= @word.favorites.count %></span>
-          </li>
+          <!-- いいね機能 -->
+          <%= render partial: 'favorites/shared/favorite', locals: { word: @word } %>
           <% if user_signed_in? && current_user.id == @word.user_id %>
             <li><%= status(@word.is_published) %></li>
             <li><%= link_to "編集", edit_word_path(@word), class: "btn" %></li>
@@ -37,7 +35,7 @@
       <div class="comments_space">
         <!-- コメント新規投稿 -->
         <% if user_signed_in? %>
-         <%= render partial: 'comments/shared/comment_form', locals: { word: @word, comment: @comment } %>
+          <%= render partial: 'comments/shared/comment_form', locals: { word: @word, comment: @comment } %>
         <% end %>
         <!-- コメント一覧 -->
         <%= render partial: 'comments/shared/comment_index', locals: { word: @word } %>

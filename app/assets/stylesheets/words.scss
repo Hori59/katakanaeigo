@@ -16,11 +16,11 @@
 }
 .words_box {
   padding: 1rem;
-  height: 165px;
-  width: 100%;
+  // height: 165px;
+  // width: 100%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  position: relative;
+  // position: relative;
 }
 div.words_box:active {
   -webkit-transform: translate(0,2px);
@@ -42,9 +42,22 @@ div.words_box:active {
   height: 70px;
 }
 ////投稿のいいね・コメント数
-.words-items {
-  position: absolute;
-  bottom: 0;
+.words_item {
+  display: flex;
+  align-items: center;
+  li {
+    font-size: 0.8rem;
+    margin-right: 1rem;
+  }
+  a {
+    // font-size: 10px;
+    text-decoration: none;
+    color: #555555;
+  }
+  .word_status {
+    border: 1px solid #555555;
+    border-radius: 10px;
+  }
 }
 #tab-menu{
   margin: 0;
@@ -107,9 +120,6 @@ div.words_box:active {
 .bold-title {
   font-weight: bold;
   font-size: 2.5rem;
-}
-.word_subtitle {
-  font-size: 1.5rem;
 }
 .word_body {
   border-radius: 5px;
