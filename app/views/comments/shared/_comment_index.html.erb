@@ -1,0 +1,23 @@
+<div class="comments_index">
+  <% word.comments.each do |comment| %>
+    <div class="user_left">
+      <%= link_to user_path(comment.user_id) do %>
+        <%= attachment_image_tag comment.user, :profile_image, size: '50x50', format: 'jpeg', fallback: "no_image.jpeg" %>
+      <% end %>
+    </div>
+    <div class="user_right">
+      <div class="user_name">
+        <%= comment.user.name %>@<%= comment.user_id %>
+      </div>
+      <div class="comment_body">
+        <%= comment.body %>
+      </div>
+      <% if user_signed_in? && comment.user_id == current_user.id %>
+        <div class="edit_menu">
+          <%= link_to "編集", edit_word_comment_path(comment.word_id, comment.id) %>
+          <%= link_to "削除", word_comment_path(comment.word_id, comment.id), method: :delete %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

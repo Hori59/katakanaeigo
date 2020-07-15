@@ -1,3 +1,131 @@
 // Place all the styles related to the words controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//投稿一覧
+.wrap{
+  // width: 90%;
+  // max-width: 800px;
+  margin: 0 auto;
+}
+.word_index .col-md-3 {
+  padding: 0 5px;
+}
+.words_container {
+  margin-bottom: 15px;
+}
+.words_box {
+  padding: 1rem;
+  // height: 165px;
+  // width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  // position: relative;
+}
+div.words_box:active {
+  -webkit-transform: translate(0,2px);
+  -moz-transform: translate(0,2px);
+  transform: translate(0,2px);
+  box-shadow: none;
+}
+
+////投稿のタイトル部分
+.words_name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  font-size: 2rem;
+}
+////投稿の説明文
+.words_description {
+  text-overflow: ellipsis;
+  height: 70px;
+}
+////投稿のいいね・コメント数
+.words_item {
+  display: flex;
+  align-items: center;
+  li {
+    font-size: 0.8rem;
+    margin-right: 1rem;
+  }
+  a {
+    // font-size: 10px;
+    text-decoration: none;
+    color: #555555;
+  }
+  .word_status {
+    border: 1px solid #555555;
+    border-radius: 10px;
+  }
+}
+#tab-menu{
+  margin: 0;
+  padding: 0;
+}
+#tab-menu li {
+  float: left;
+  // list-style-type: none;
+  width: 25%;
+}
+#tab-menu a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #555555;
+  border: 1px solid #555555;
+  border-bottom: none;
+}
+#tab-menu .active {
+  background: #fff;
+  color: #555555;
+}
+#tab-contents .tab {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #555555;
+  border-top: none;
+}
+
+//新規投稿
+.horizontal_group {
+  display: flex;
+  justify-content: space-around;
+}
+.btn_group {
+  display: flex;
+  justify-content: center;
+}
+.btn_save {
+  width: 200px;
+  margin-left: 20px;
+}
+
+//編集画面
+.word_status {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+//投稿詳細
+#word_title {
+  display: flex;
+  align-items: center;
+}
+#word_title li {
+  margin-right: 10px;
+}
+.bold-title {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+.word_body {
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+}
+.word_description, .user_info {
+  padding-left: 30px;
+}

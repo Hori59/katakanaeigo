@@ -75,3 +75,11 @@ gem 'faker', group: :development # 仮データ作成用
 # ビューを整える用
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
+# ページネーションの実装
+gem 'kaminari'
+
+# 本番環境
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
