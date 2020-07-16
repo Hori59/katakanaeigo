@@ -6,5 +6,8 @@ class CreateTagMaps < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :tag_maps, :word_id
+    add_index :tag_maps, :tag_id
+    add_index :tag_maps, [:word_id, :tag_id], unique: true
   end
 end

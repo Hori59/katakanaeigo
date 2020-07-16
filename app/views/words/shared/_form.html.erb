@@ -18,6 +18,11 @@
       <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control" %>
     </div>
 
+    <div class="form-group">
+      <label class="form-label">タグ</label>
+      <input type="text" name="tag_name" placeholder="タグを二つ以上登録する場合は、,(半角コンマ)で区切ってください" class="form-control" value="<%= @tag_list %>">
+    </div>
+
     <div class="btn_group">
       <div class="form-group">
         <%= f.submit '下書きに保存', :name => 'draft', class: "btn" %>
