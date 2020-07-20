@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col">
+    <h2>お問い合わせ</h2>
+    <div class="form">
+      <%= form_for @contact, :url => contact_confirm_path do |f| %>
+        <% if @contact.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <strong>入力内容にエラーがあります</strong>
+            <ul>
+              <% @contact.errors.each do |attr, msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <table class="table">
+          <tr>
+            <th>名前<span class="text-danger">（必須）</span></th>
+            <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス<span class="text-danger">（必須）</span></th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <th>お問い合わせ内容</th>
+            <td><%= f.text_area :body, autofocus: true, autocomplete: "body" %></td>
+          </tr>
+        </table>
+        <%= f.submit '確認', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
