@@ -83,3 +83,7 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+# 管理画面の日本語化
+gem 'rails-i18n'
+gem 'devise-i18n'
