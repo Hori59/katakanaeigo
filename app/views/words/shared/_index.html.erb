@@ -9,16 +9,20 @@
         </p>
         <div class="words_items">
           <ul class="words_item">
-            <%= render partial: 'favorites/shared/favorite', locals: { word: words } %>
-            <li>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-              <%= words.comments.count %>
-            </li>
+            <% unless words.is_published == false %>
+              <%= render partial: 'favorites/shared/favorite', locals: { word: words } %>
+              <li>
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                <%= words.comments.count %>
+              </li>
+            <% end %>
             <!-- ログイン済みかつユーザ本人がマイページに来た場合のみ投稿のステータスを表示 -->
             <% if user_signed_in? && ( words.user_id == current_user.id ) && (request.path == "/users/#{words.user_id}" ) %>
-              <li class="word_status">
-                <%= status(words.is_published) %>
-              </li>
+              <% if words.is_published == false %>
+                <li class="word_status">
+                  <%= status(words.is_published) %>
+                </li>
+              <% end %>
             <% end %>
           </ul>
         </div>

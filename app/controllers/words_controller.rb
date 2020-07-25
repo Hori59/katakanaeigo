@@ -4,7 +4,14 @@ class WordsController < ApplicationController
 
   # 投稿一覧 全ワードのうち公開中のもののみ取得
   def index
-    @words = Word.includes(:user).where(is_published: true).order(created_at: :desc).page(params[:page]).per(10)
+    @tags = Tag.order(:id).limit(10).offset(0)
+    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
+    if params[:tag_id]
+      tag = Tag.find(params[:tag_id])
+      @words = tag.words.where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
+    else
+      @words = Word.includes(user: :favorites, user: :comments).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
+    end
   end
 
   # 新規投稿画面表示
@@ -15,12 +22,12 @@ class WordsController < ApplicationController
 
   # 新規投稿
   def create
-    @user = current_user
-    @word = Word.new(word_params)
-    @word.user_id = @user.id
+    @word = current_user.words.new(word_params)
+    tag_list = params[:tag_name].split(",")
     if params[:public] # 保存ボタンが押された場合公開フラグをtrueで保存
       @word.is_published = true
       if @word.save
+        @word.save_tags(tag_list)
         redirect_to word_path(@word)
       else
         render :new
@@ -28,6 +35,7 @@ class WordsController < ApplicationController
     elsif params[:draft]# 下書きボタンが押された場合公開フラグをfalseで保存
       @word.is_published = false
       if @word.save
+        @word.save_tags(tag_list)
         redirect_to word_path(@word)
       else
         render :new
@@ -37,14 +45,19 @@ class WordsController < ApplicationController
 
   # 投稿詳細表示
   def show
+    @tags = Tag.order(:id).limit(10).offset(0)
+    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     @word = Word.find(params[:id])
     @comment = Comment.new
+    @tags = Tag.includes(:words)
+    # @tag_list = @word.tags
     # binding.pry
   end
 
   # 投稿編集画面表示
   def edit
     @word = Word.find(params[:id])
+    @tag_list = @word.tags.pluck(:tag_name).join(",")
     if @word.is_published == false
       @title = "下書き"
     else
@@ -55,9 +68,11 @@ class WordsController < ApplicationController
   # 投稿上書き
   def update
     @word = Word.find(params[:id])
+    tag_list = params[:tag_name].split(",")
     if params[:public] # 保存ボタンが押された場合公開フラグをtrueで保存
       @word.is_published = true
       if @word.update(word_params)
+        @word.save_tags(tag_list)
         redirect_to word_path(@word)
       else
         render :edit
@@ -65,6 +80,7 @@ class WordsController < ApplicationController
     elsif params[:draft]# 下書きボタンが押された場合公開フラグをfalseで保存
       @word.is_published = false
       if @word.update(word_params)
+        @word.save_tags(tag_list)
         redirect_to root_path
       else
         render :edit
@@ -77,6 +93,13 @@ class WordsController < ApplicationController
     @word = Word.find(params[:id])
     @word.destroy
     redirect_to user_path(current_user)
+  end
+
+  # 検索機能
+  def search
+    @tags = Tag.order(:id).limit(10).offset(0)
+    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
+    @words = Word.includes(user: :favorites, user: :comments).where(['name LIKE ?', "%#{params[:search]}%"]).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   private

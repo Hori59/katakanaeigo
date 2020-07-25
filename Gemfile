@@ -64,6 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise' # ログイン機能の実装
 gem 'paranoia' # ユーザ論理削除の実装
 gem 'activeadmin' # 管理者ページの実装
+gem 'active_skin'# activeadminのデザイン変更
 
  #ユーザプロフィール画像の実装
 gem "refile", require: "refile/rails", github: 'manfe/refile'
@@ -75,6 +76,7 @@ gem 'faker', group: :development # 仮データ作成用
 # ビューを整える用
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 # ページネーションの実装
 gem 'kaminari'
 
@@ -83,3 +85,7 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+# 管理画面の日本語化
+gem 'rails-i18n'
+gem 'devise-i18n'

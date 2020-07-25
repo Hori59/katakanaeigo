@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :words,     dependent: :destroy
   has_many :comments,  dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_words, through: :favorites, source: :word
 
   #新規登録時のバリデーション
   validates :id, presence: true, length: { in: 1..15 }

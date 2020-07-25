@@ -1,0 +1,27 @@
+
+[1mFrom:[0m /home/vagrant/work/katakanaeigo/app/controllers/words_controller.rb:23 WordsController#create:
+
+    [1;34m17[0m: [32mdef[0m [1;34mcreate[0m
+    [1;34m18[0m:   [1;34m# @user = current_user[0m
+    [1;34m19[0m:   @word = current_user.words.new(word_params)
+    [1;34m20[0m:   [1;34m# @word.user_id = @user.id[0m
+    [1;34m21[0m:   tag_list = params[[33m:tag_name[0m].split([31m[1;31m"[0m[31m,[1;31m"[0m[31m[0m)
+    [1;34m22[0m:   binding.pry
+ => [1;34m23[0m:   [32mif[0m params[[33m:public[0m] [1;34m# 保存ボタンが押された場合公開フラグをtrueで保存[0m
+    [1;34m24[0m:     @word.is_published = [1;36mtrue[0m
+    [1;34m25[0m:     [32mif[0m @word.save
+    [1;34m26[0m:       @word.save_tags(tag_list)
+    [1;34m27[0m:       redirect_to word_path(@word)
+    [1;34m28[0m:     [32melse[0m
+    [1;34m29[0m:       render [33m:new[0m
+    [1;34m30[0m:     [32mend[0m
+    [1;34m31[0m:   [32melsif[0m params[[33m:draft[0m][1;34m# 下書きボタンが押された場合公開フラグをfalseで保存[0m
+    [1;34m32[0m:     @word.is_published = [1;36mfalse[0m
+    [1;34m33[0m:     [32mif[0m @word.save
+    [1;34m34[0m:       redirect_to word_path(@word)
+    [1;34m35[0m:     [32melse[0m
+    [1;34m36[0m:       render [33m:new[0m
+    [1;34m37[0m:     [32mend[0m
+    [1;34m38[0m:   [32mend[0m
+    [1;34m39[0m: [32mend[0m
+

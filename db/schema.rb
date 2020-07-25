@@ -68,12 +68,16 @@ ActiveRecord::Schema.define(version: 2020_07_11_065026) do
     t.integer "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
+    t.index ["word_id", "tag_id"], name: "index_tag_maps_on_word_id_and_tag_id", unique: true
+    t.index ["word_id"], name: "index_tag_maps_on_word_id"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string "tag_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag_name"], name: "index_tags_on_tag_name", unique: true
   end
 
   create_table "users", id: :string, force: :cascade do |t|

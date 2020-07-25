@@ -3,5 +3,5 @@ class Comment < ApplicationRecord
   belongs_to :word
 
   # コメントのバリデーション
-  validates :body, presence: true
+  validates :body, :presence => {:message => 'コメントを入力してください'}
 end

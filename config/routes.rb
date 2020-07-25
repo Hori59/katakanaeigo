@@ -46,4 +46,10 @@ Rails.application.routes.draw do
 
   # ユーザ周辺機能
   resources :users, only: [:show]
+
+  # 問合せ機能
+  get 'contact' => 'contact#index' # 入力画面
+  post 'contact/confirm' => 'contact#confirm' # 確認画面
+  post 'contact/thanks' => 'contact#thanks' # 送信完了画面
+  get 'search' => 'words#search' # 検索機能
 end

@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    models:
+      admin_user: "管理者"
+      comment: "コメント"
+      word: "投稿"
+    attributes:
+      admin_user:
+        id: "登録番号"
+        email: "メールアドレス"
+        current_sign_in_at: "ログイン状態"
+        sign_in_count: "ログイン回数"
+        created_at: "作成日"
+      word:
+        id: "登録番号"
+        user_id: "投稿者"
+        name: "タイトル"
+        english_name: "英語名"
+        is_published: "状態"
+        created_at: "作成日"
+        updated_at: "更新日"
+      user:
+        id: "登録番号"
+        name: "アカウント名"
+        self_introduction: "自己紹介"
+        profile_image_id: "プロフィール画像番号"
+        deleted_at: "退会日"
+        created_at: "作成日"
+        updated_at: "更新日"

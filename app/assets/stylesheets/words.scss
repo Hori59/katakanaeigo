@@ -15,12 +15,16 @@
   margin-bottom: 15px;
 }
 .words_box {
+  background-color: #FFF;
   padding: 1rem;
   // height: 165px;
   // width: 100%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  // border-radius: 5px;
   // position: relative;
+  a {
+    text-decoration: none;
+  }
 }
 div.words_box:active {
   -webkit-transform: translate(0,2px);
@@ -46,68 +50,61 @@ div.words_box:active {
   display: flex;
   align-items: center;
   li {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-right: 1rem;
+    padding: 2px;
   }
   a {
     // font-size: 10px;
     text-decoration: none;
     color: #555555;
   }
-  .word_status {
-    border: 1px solid #555555;
-    border-radius: 10px;
-  }
-}
-#tab-menu{
-  margin: 0;
-  padding: 0;
-}
-#tab-menu li {
-  float: left;
-  // list-style-type: none;
-  width: 25%;
-}
-#tab-menu a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 20px;
-  text-align: center;
-  background: #555555;
-  border: 1px solid #555555;
-  border-bottom: none;
-}
-#tab-menu .active {
-  background: #fff;
-  color: #555555;
-}
-#tab-contents .tab {
-  padding: 30px;
-  background: #fff;
-  border: 1px solid #555555;
-  border-top: none;
 }
 
+
 //新規投稿
-.horizontal_group {
-  display: flex;
-  justify-content: space-around;
-}
 .btn_group {
   display: flex;
   justify-content: center;
+  #btn_draft {
+    border: 2px solid #16B7C1;
+    border-radius: 50px;
+    height: 100%;
+    color: #16B7C1;
+    background: #FFF;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    margin-right: 50px;
+  }
+  #btn_draft:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  #btn_public {
+    border: 2px solid #16B7C1;
+    border-radius: 50px;
+    height: 100%;
+    width: 200px;
+    color: #FFF;
+    background: #16B7C1;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+  }
+  #btn_public:hover {
+    background-color: #129CA5;
+    border: 2px solid #129CA5;
+    color: #555555;
+  }
 }
-.btn_save {
-  width: 200px;
-  margin-left: 20px;
-}
+
 
 //編集画面
 .word_status {
   font-size: 1.5rem;
   padding: 0.5rem;
 }
+
 
 //投稿詳細
 #word_title {
@@ -122,10 +119,47 @@ div.words_box:active {
   font-size: 2.5rem;
 }
 .word_body {
+  background-color: #FFF;
   border-radius: 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  .word_space {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    padding-bottom: 20px;
+  }
+  a {
+    text-decoration: none;
+  }
+  .new_comment {
+    margin-top: 20px;
+  }
 }
 .word_description, .user_info {
   padding-left: 30px;
+}
+.word_tag_list {
+  ul {
+    display: flex;
+  }
+  li {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    padding: 1px 3px;
+    background-color: rgb(221, 221, 221);
+  }
+}
+
+//コメント欄
+.comments_index {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  padding: 10px 30px;
+  border-top: rgb(221, 221, 221);
+  .comment_user_right {
+    margin-left: 10px;
+    .comment_user_status {
+      display: flex;
+    }
+  }
 }
