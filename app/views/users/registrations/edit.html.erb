@@ -7,7 +7,7 @@
         <%= render "users/shared/error_messages", resource: resource %>
 
         <div class="form-group" id="profile_up_btn">
-          <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: "no_image.jpeg" %>
+          <%= attachment_image_tag @user, :profile_image, size: '200x200', format: 'jpeg', fallback: asset_path("no_image.jpg") %>
           <%= f.attachment_field :profile_image %>
         </div>
 
