@@ -1,24 +1,7 @@
 <div class="row">
   <!-- タグ一覧 -->
   <div class="col-md-3">
-    <div class="row side_menu">
-      <div class="col-md-12 list_group">
-        <h2>タグ一覧</h2>
-        <div class="tag_list">
-          <% @tags.each do |tag| %>
-            <%= link_to tag.tag_name, words_path(tag_id: tag.id) %>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-md-12 list_group">
-        <h2>人気ワード</h2>
-        <div class="rank_links">
-          <% @all_ranks.each do |top_word| %>
-            <%= link_to top_word.name, word_path(top_word) %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'words/shared/side_menu', locals: {tags: @tags, all_ranks: @all_ranks} %>
   </div>
 
   <!-- 投稿一覧（作成日降順） -->

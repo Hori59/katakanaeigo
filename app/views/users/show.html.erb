@@ -1,50 +1,43 @@
 <div class="row user_container">
   <!-- ユーザプロフィール -->
   <div class="col-md-3">
-    <div class="user_profile text-center">
+    <div class="user_profile">
       <%= attachment_image_tag @user, :profile_image, size: '100x100', format: 'jpeg', fallback: "no_image.jpeg" %><br>
       <%= @user.name %>｜@<%= @user.id %><br>
       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
       <%= @user.words.count %>
-      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
       <%= @user.favorites.count %><br>
       <%= @user.self_introduction %><br>
       <!-- ログイン済みかつ本人の場合のみ編集ボタンを表示 -->
       <% if user_signed_in? && @user.id == current_user.id %>
-        <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn" %>
+        <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-success" %>
       <% end %>
     </div>
   </div>
 
-  <!-- ユーザの投稿一覧（なんで動かんのかわからんけどバッファで触る） -->
+  <!-- ユーザの投稿一覧 -->
     <div class="wrap col-md-9">
-      <ul id="tab-menu" class="clearfix">
-        <li><a href="#tab1" class="active">投稿一覧</a></li>
-        <li><a href="#tab2" class="">いいね一覧</a></li>
-        <li><a href="#tab3" class="">TAB3</a></li>
-        <li><a href="#tab4" class="">TAB4</a></li>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">投稿</a></li>
+        <li><a href="#tab2" data-toggle="tab">お気に入り</a></li>
       </ul>
 
-      <div id="tab-contents" class="clearfix">
-        <div id="tab1" class="tab">
-          <h2><%= @user.name %>さんの投稿一覧</h2>
-          <p><%= @message %></p>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
           <div class="row">
+            <p class="user_words_message"><%= @message %></p>
             <%= render partial: 'words/shared/index', collection: @words, as: 'words' %>
           </div>
         </div>
 
-        <div id="tab2" class="tab">
-          <p>TAB2のテキストが入ります。TAB２のテキストが入ります。</p>
+        <div class="tab-pane" id="tab2">
+          <div class="row">
+            <p class="user_words_message"><%= @no_words %></p>
+            <%= render partial: 'words/shared/favorite_index', collection: @user.favorite_words, as: 'favorite_words' %>
+          </div>
         </div>
 
-        <div id="tab3" class="tab">
-          <p>TAB3のテキストが入ります。TAB３のテキストが入ります。TAB3のテキストが入ります。</p>
-        </div>
-
-        <div id="tab4" class="tab">
-          <p>TAB4のテキストが入ります。TAB4のテキストが入ります。TAB4のテキストが入ります。TAB4のテキストが入ります。</p>
-        </div>
       </div>
 
   </div>

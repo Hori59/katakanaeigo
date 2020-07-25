@@ -1,3 +1,65 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//ユーザプロフィール
+.user_container {
+  // margin-top: 20px;
+  .col-md-3 {
+    background-color: #FFF;
+  }
+  .user_profile {
+    margin: 50px auto;
+  }
+}
+.user_profile {
+  margin: 20px auto;
+  text-align: center;
+  .btn-success {
+    color: #FFF;
+    text-decoration: none;
+  }
+}
+
+
+//ユーザ詳細の投稿一覧
+.tab-content {
+  background-color: #FFF;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  .user_words_message {
+    text-align: center;
+  }
+}
+.nav-tabs {
+  .active a {
+    background-color: rgb(230, 230, 230)
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.nav-tabs a:hover {
+  background-color: rgb(221, 221, 221);
+}
+
+
+//ユーザ編集画面
+#profile_up_btn {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  input[type="file"] {
+    margin-left: 10px;
+  }
+}
+//ユーザ削除ボタンを小さめに
+.user_deletion {
+  text-align: left;
+}
+#user_delete_btn {
+  margin: 0 auto;
+  width: 20%;
+}

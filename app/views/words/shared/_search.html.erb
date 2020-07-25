@@ -1,10 +1,6 @@
-<div class="search_field">
-  <%= form_tag(search_path, method: :get) do |f| %>
-  <div class="form-group">
-    <%= text_field_tag :search %>
-  </div>
-  <div class="submit">
-    <%= submit_tag '検索' %>
-  </div>
+<!-- <div class=""> -->
+  <%= form_with url:'/search', method: :get, local: true, id: 'search_field' do |f| %>
+    <%= f.text_field :search %>
+    <%= f.submit '検索', id: "search_submit" %>
   <% end %>
-</div>
+<!-- </div> -->
