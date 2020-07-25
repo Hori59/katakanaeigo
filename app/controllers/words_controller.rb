@@ -8,9 +8,9 @@ class WordsController < ApplicationController
     @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])
-      @words = tag.words.where(is_published: true).order(created_at: :desc).page(params[:page]).per(10)
+      @words = tag.words.where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
     else
-      @words = Word.includes(user: :favorites, user: :comments).where(is_published: true).order(created_at: :desc).page(params[:page]).per(10)
+      @words = Word.includes(user: :favorites, user: :comments).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
     end
   end
 
@@ -45,6 +45,8 @@ class WordsController < ApplicationController
 
   # 投稿詳細表示
   def show
+    @tags = Tag.order(:id).limit(10).offset(0)
+    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     @word = Word.find(params[:id])
     @comment = Comment.new
     @tags = Tag.includes(:words)
@@ -95,7 +97,9 @@ class WordsController < ApplicationController
 
   # 検索機能
   def search
-    @words = Word.includes(user: :favorites, user: :comments).where(['name LIKE ?', "%#{params[:search]}%"]).where(is_published: true).order(created_at: :desc).page(params[:page]).per(10)
+    @tags = Tag.order(:id).limit(10).offset(0)
+    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
+    @words = Word.includes(user: :favorites, user: :comments).where(['name LIKE ?', "%#{params[:search]}%"]).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   private

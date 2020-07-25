@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if user_signed_in? && word.is_published == true %>
   <% if word.favorited_by?(current_user) %>
     <!-- いいね済みの場合、削除ボタンを表示 -->
     <li class="favorite_space">
@@ -21,7 +21,7 @@
     </li>
   <% end %>
 <% else%>
-  <!-- 未ログインユーザにはいいねボタンのリンクを出さない -->
+  <!-- 未ログインユーザもしくは下書きにはいいねボタンのリンクを出さない -->
   <li class="favorite_space">
     <span class="word_subtitle">
       <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>

@@ -1,0 +1,21 @@
+  <%= link_to word_path(favorite_words) do %>
+    <div class="words_container col-xs-12 col-md-3">
+      <div class="words_box">
+        <h4 class="words_name">
+          <%= favorite_words.name %>
+        </h4>
+        <p class="words_description">
+          <%= favorite_words.description.truncate(40) %>
+        </p>
+        <div class="words_items">
+          <ul class="words_item">
+            <%= render partial: 'favorites/shared/favorite', locals: { word: favorite_words } %>
+            <li>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+              <%= favorite_words.comments.count %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>

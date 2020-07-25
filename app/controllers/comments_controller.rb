@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to word_path(@word)
     else
+      @tags = Tag.order(:id).limit(10).offset(0)
+      @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
       render "words/show"
     end
   end
