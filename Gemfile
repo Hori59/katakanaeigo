@@ -78,7 +78,7 @@ gem 'pry-byebug', group: :development # デバッグ作業用
 gem 'faker', group: :development # 仮データ作成用
 
 # ビューを整える用
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 # ページネーションの実装
