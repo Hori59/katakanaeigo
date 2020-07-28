@@ -15,8 +15,17 @@
     <header id="header">
       <nav class="navbar navbar-default navbar-fixed-top">
         <ul class="header_list">
-          <li>
+          <li id="header_title">
             <%= link_to "カタカナエイゴ", root_path, id: "site_title" %>
+            <div class="dropdown">
+              <button class="dropdown-toggle" id="btn_radius" type="button" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><%= link_to "このサイトについて", about_path %></li>
+              </ul>
+            </div>
+
           </li>
           <li><%= render partial: 'words/shared/search' %></li>
           <% if user_signed_in? %><!-- ログイン後 -->

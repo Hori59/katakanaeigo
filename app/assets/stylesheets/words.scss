@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//アバウトページ
+#about {
+  background-color: #FFF;
+  padding: 30px;
+  #about_color {
+    color: #FF5810;
+    font-size: 3rem;
+  }
+  #about_body {
+    text-align: center;
+    margin: 20px;
+    letter-spacing: 2px;
+  }
+  .new_user_registration_link {
+    margin-top: 20px;
+  }
+}
+
 //投稿一覧
 .wrap{
   // width: 90%;

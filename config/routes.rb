@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   # ルート設定
   root 'words#index'
+  # アバウトページ
+  get 'about' => 'words#about'
 
   # ワード周辺機能
   resources :words do

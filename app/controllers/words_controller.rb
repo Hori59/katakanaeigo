@@ -2,6 +2,9 @@ class WordsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def about
+  end
+
   # 投稿一覧 全ワードのうち公開中のもののみ取得
   def index
     @tags = Tag.order(:id).limit(10).offset(0)
