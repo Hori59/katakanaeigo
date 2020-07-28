@@ -68,7 +68,7 @@ div.words_box:active {
   justify-content: center;
   #btn_draft {
     border: 2px solid #16B7C1;
-    border-radius: 50px;
+    // border-radius: 50px;
     height: 100%;
     color: #16B7C1;
     background: #FFF;
@@ -82,7 +82,7 @@ div.words_box:active {
   }
   #btn_public {
     border: 2px solid #16B7C1;
-    border-radius: 50px;
+    // border-radius: 50px;
     height: 100%;
     width: 200px;
     color: #FFF;
@@ -110,6 +110,30 @@ div.words_box:active {
 #word_title {
   display: flex;
   align-items: center;
+  .btn_edit {
+    color: #46D0B3;
+    border: 2px solid #46D0B3;
+    background: #FFF;
+    padding: 2px 5px;
+  }
+  .btn_edit:hover {
+    color: #FFF;
+    border: 2px solid #46D0B3;
+    background: #46D0B3;
+    padding: 2px 5px;
+  }
+  .btn_destroy {
+    color: #D04663;
+    border: 2px solid #D04663;
+    background: #FFF;
+    padding: 2px 5px;
+  }
+  .btn_destroy:hover {
+    color: #FFF;
+    border: 2px solid #D04663;
+    background: #D04663;
+    padding: 2px 5px;
+  }
 }
 #word_title li {
   margin-right: 10px;
@@ -137,15 +161,20 @@ div.words_box:active {
 .word_description, .user_info {
   padding-left: 30px;
 }
+//投稿タグ
 .word_tag_list {
   ul {
     display: flex;
+    margin-left: 30px;
   }
   li {
     margin-right: 10px;
     font-size: 1.2rem;
     padding: 1px 3px;
-    background-color: rgb(221, 221, 221);
+    background-color: #DDDDDD;
+  }
+  li:hover {
+    background-color: #BDBDBD;
   }
 }
 
@@ -161,5 +190,14 @@ div.words_box:active {
     .comment_user_status {
       display: flex;
     }
+  }
+}
+//コメント編集画面
+#comment_edit {
+  .form-control {
+    width: 100%;
+  }
+  .btn-success {
+    width: 100%;
   }
 }

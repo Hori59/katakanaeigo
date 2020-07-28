@@ -68,9 +68,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise' # ログイン機能の実装
 gem 'paranoia' # ユーザ論理削除の実装
 gem 'activeadmin' # 管理者ページの実装
-gem 'active_skin'# activeadminのデザイン変更
+gem 'active_skin' # activeadminのデザイン変更
 
- #ユーザプロフィール画像の実装
+# ユーザプロフィール画像の実装
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
@@ -93,3 +93,9 @@ end
 # 管理画面の日本語化
 gem 'rails-i18n'
 gem 'devise-i18n'
+
+# コーディング規約に遵守されているかチェックを行う、静的コード解析ツール
+gem 'rubocop-airbnb'
+
+gem 'whenever', require: false
+# require: falseとするのは、このGem自体がRailsアプリケーションに反映するものではなく、ターミナル(言わばOS)に反映させるものだから。

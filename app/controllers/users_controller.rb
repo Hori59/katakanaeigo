@@ -16,6 +16,14 @@ class UsersController < ApplicationController
     end
   end
 
+  # 退会ユーザ復帰機能後回し
+  # def user_restore
+  #   @user = User.only_deleted.find(params[:id]).restore
+  #   session[:id] = @user.id
+  #   flash[:notice] = "退会を取り消しました"
+  #   redirect_to user_path(@user)
+  # end
+
   private
 
   def user_params

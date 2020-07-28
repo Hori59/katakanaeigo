@@ -1,5 +1,4 @@
 ActiveAdmin.register Word do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -34,11 +33,11 @@ ActiveAdmin.register Word do
       f.input :name
       f.input :english_name
       f.input :description
-      f.input :is_published, as: :select, collection:{"下書き"=>0,"公開"=>1}
+      f.input :is_published, as: :select, collection: { "下書き" => 0, "公開" => 1 }
     end
     f.actions
   end
-    #
+  #
   # or
   #
   # permit_params do

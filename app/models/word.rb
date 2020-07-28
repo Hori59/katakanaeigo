@@ -7,11 +7,12 @@ class Word < ApplicationRecord
   has_many   :tags,      through: :tag_maps
 
   # 投稿のバリデーション
-  validates :name, :presence => {:message => 'タイトルを入力してください'}
-  validates :description, :presence => {:message => '説明を入力してください'}
+  validates :name, :presence => { :message => 'タイトルを入力してください' }, uniqueness: true
+  validates :description, :presence => { :message => '説明を入力してください' }
 
-
-  def favorited_by?(user) # 引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べる。存在していればtrue、存在していなければfalseを返す
+# 引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べる。
+# 存在していればtrue、存在していなければfalseを返す
+  def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
 

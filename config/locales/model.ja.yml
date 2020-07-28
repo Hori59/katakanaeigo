@@ -6,13 +6,13 @@ ja:
       word: "投稿"
     attributes:
       admin_user:
-        id: "登録番号"
+        id: "ID"
         email: "メールアドレス"
         current_sign_in_at: "ログイン状態"
         sign_in_count: "ログイン回数"
         created_at: "作成日"
       word:
-        id: "登録番号"
+        id: "ID"
         user_id: "投稿者"
         name: "タイトル"
         english_name: "英語名"
@@ -20,7 +20,7 @@ ja:
         created_at: "作成日"
         updated_at: "更新日"
       user:
-        id: "登録番号"
+        id: "ID"
         name: "アカウント名"
         self_introduction: "自己紹介"
         profile_image_id: "プロフィール画像番号"

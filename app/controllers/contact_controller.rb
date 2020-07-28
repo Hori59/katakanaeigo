@@ -20,7 +20,6 @@ class ContactController < ApplicationController
       ContactMailer.send_mail(@contact)
       render :action => 'thanks'
     end
-
   end
 
   private

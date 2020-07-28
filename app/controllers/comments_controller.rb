@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body)
   end
 
-  #投稿者本人以外のアクセスを禁止
+  # 投稿者本人以外のアクセスを禁止
   def correct_user
     @comment = Comment.find_by(word_id: params[:word_id], id: params[:id])
     unless @comment.user_id == current_user.id

@@ -26,9 +26,14 @@
 
 //共通フォント
 html, body {
+  height: 100%;
   color: #555555;
   background-color: #f6f6f4;
   // font-family: 'arial unicode ms';
+}
+
+.row a {
+  color: #555555;
 }
 
 //リストの・を削除
@@ -41,34 +46,24 @@ img {
   border-radius: 50%;
 }
 
-// インプットボタンの形を統一
-input[type='submit'] {
-  border-radius: 50px;
-  width: 100%;
-}
-input[type='submit']:focus {
-  border-radius: 50px;
-  width: 100%;
-}
-input[type='submit']:active {
-  border-radius: 50px;
-  width: 100%;
-}
+// // インプットボタンの形を統一
+// input[type='submit'] {
+//   border-radius: 50px;
+//   width: 100%;
+// }
+// input[type='submit']:focus {
+//   border-radius: 50px;
+//   width: 100%;
+// }
+// input[type='submit']:active {
+//   border-radius: 50px;
+//   width: 100%;
+// }
 
 // エラー項目が赤くなるように設定
 .field_with_errors {
   @extend .has-error;
 }
-
-/* 入力エラーのスタイル */
-// input[type=text]:required,
-// input[type=email]:required,
-// input[type=email]:invalid,
-// textarea:required {
-//   color: #630015;
-//   border-color: #c20c33;
-//   background-color: #ffd9e1;
-// }
 
 //ヘッダー
 header {
@@ -87,32 +82,30 @@ header {
     display: flex;
     align-items: center;
     width: 200px;
-    height: 25px;
-    border-radius: 15px;
-    background-color: #FFF;
-    border: 1px solid #555555;
+    height: 30px;
     input[type='text'] {
-      padding-left: 10px;
-      margin: 0;
+      // color: #BDBDBD;
+      background-color: #FFF;
+      border: 1px solid #DDDDDD;
+      padding-left: 10px; //入力文字の位置調整
+      // margin: 0;
       width: 80%;
       height: 100%;
-      border: none;
-      border-radius: 15px 0 0 15px / 15px 0 0 15px;
     }
     #search_submit {
-      margin: 0;
-      border: none;
+      // margin: 0;
+      border: 1px solid #555555;
       height: 100%;
-      width: 40%;
-      color: #000;
+      width: 20%;
+      color: #555555;
       background-color: #FFF;
       background-image: none;
       padding: 0;
+      transition: all 0.5s;
     }
-    #search_submit:active {
-      border: none;
-      // border-radius: 0 15px 15px 0 / 0 15px 15px 0;
-      background-color: #FFF;
+    #search_submit:hover {
+      background: #555555;
+      color: #FFF;
     }
   }
 }

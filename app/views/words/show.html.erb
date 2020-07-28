@@ -15,12 +15,12 @@
           <% end %>
           <!-- いいね機能 -->
           <%= render partial: 'favorites/shared/favorite', locals: { word: @word } %>
+          <li>最終更新：<%= @word.updated_at.strftime('%Y/%m/%d %H:%M') %></li>
           <% if user_signed_in? && current_user.id == @word.user_id %>
             <li><%= status(@word.is_published) %></li>
-            <li><%= link_to "編集", edit_word_path(@word), class: "btn" %></li>
-            <li><%= link_to "削除", word_path(@word), method: :delete, class: "btn" %></li>
+            <li><%= link_to "編集", edit_word_path(@word), class: "btn btn_edit" %></li>
+            <li><%= link_to "削除", word_path(@word), data: { confirm: "削除してよろしいですか？" }, method: :delete, class: "btn btn_destroy" %></li>
           <% end %>
-          <li><%= @word.updated_at.strftime('%Y/%m/%d %H:%M') %></li>
         </ul>
 
         <!-- 投稿本文 -->

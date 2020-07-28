@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # 管理者
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -12,9 +11,9 @@ Rails.application.routes.draw do
     # 新規登録
     post 'users',               to: 'users/registrations#create',  as: :user_registration
     # ユーザ編集画面表示
-    get 'users/edit',             to: 'users/registrations#edit',  as: :edit_user_registration
+    get 'users/edit', to: 'users/registrations#edit',  as: :edit_user_registration
     # ユーザ上書き
-    put 'users',             to: 'users/registrations#update',     as: :update_user_registration
+    put 'users', to: 'users/registrations#update',     as: :update_user_registration
     # ユーザ削除
     delete 'users',             to: 'users/registrations#destroy', as: :destroy_user_registration
 
@@ -46,6 +45,8 @@ Rails.application.routes.draw do
 
   # ユーザ周辺機能
   resources :users, only: [:show]
+  # ユーザ復活機能後回し
+  # patch '/users/restore', to: 'users#restore', as: :user_restore
 
   # 問合せ機能
   get 'contact' => 'contact#index' # 入力画面

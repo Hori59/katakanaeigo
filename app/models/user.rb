@@ -10,8 +10,19 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_words, through: :favorites, source: :word
 
-  #新規登録時のバリデーション
-  validates :id, presence: true, length: { in: 1..15 }
+  # 新規登録時のバリデーション
+  validates :id, presence: true, length: { in: 1..15 }, uniqueness: true
   validates :name, presence: true
   validates :self_introduction, length: { maximum: 200 }
+
+  def self.user_destroy
+    time = Time.current
+    users = User.User.only_deleted # 論理削除済のユーザのみ取得
+    users.each do |user|
+      # もしユーザ退会後１週間以上経過していたらパッチ処理で完全削除
+      if ( time - user.deleted_at ) > 1.weeks
+        user.really_destroy!
+      end
+    end
+  end
 end

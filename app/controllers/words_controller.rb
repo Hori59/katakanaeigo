@@ -32,7 +32,7 @@ class WordsController < ApplicationController
       else
         render :new
       end
-    elsif params[:draft]# 下書きボタンが押された場合公開フラグをfalseで保存
+    elsif params[:draft] # 下書きボタンが押された場合公開フラグをfalseで保存
       @word.is_published = false
       if @word.save
         @word.save_tags(tag_list)
@@ -77,7 +77,7 @@ class WordsController < ApplicationController
       else
         render :edit
       end
-    elsif params[:draft]# 下書きボタンが押された場合公開フラグをfalseで保存
+    elsif params[:draft] # 下書きボタンが押された場合公開フラグをfalseで保存
       @word.is_published = false
       if @word.update(word_params)
         @word.save_tags(tag_list)
@@ -109,7 +109,7 @@ class WordsController < ApplicationController
     params.require(:word).permit(:user_id, :name, :english_name, :description, :is_published)
   end
 
-  #投稿者本人以外のアクセスを禁止
+  # 投稿者本人以外のアクセスを禁止
   def correct_user
     @word = Word.find(params[:id])
     unless @word.user_id == current_user.id
