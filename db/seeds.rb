@@ -10,13 +10,11 @@
 AdminUser.create!(
   email: 'admin@example.com',
   password: 'password',
-  encrypted_password: 'password'
   ) if Rails.env.development?
 # 管理者本番
 AdminUser.create!(
   email: "#{ENV["OWNER_ADDRESS"]}",
-  password: "#{ENV["ADMIN_PASSWORD"]}",
-  encrypted_password: "#{ENV["ADMIN_PASSWORD"]}")
+  password: "#{ENV["ADMIN_PASSWORD"]}")
 
 # ユーザ
 # User.create!(id: "test",
