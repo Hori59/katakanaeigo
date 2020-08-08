@@ -11,7 +11,7 @@ class WordsController < ApplicationController
     @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])
-      @words = tag.words.where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
+      @words = tag.words.includes(user: :favorites, user: :comments).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
     else
       @words = Word.includes(user: :favorites, user: :comments).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
     end

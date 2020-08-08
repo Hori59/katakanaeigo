@@ -2,13 +2,17 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :authentication_keys => [:login] # ログイン認証用キーを設定
   acts_as_paranoid # 論理削除
   attachment :profile_image
   has_many :words,     dependent: :destroy
   has_many :comments,  dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_words, through: :favorites, source: :word
+
+  # ログイン時のアクセサを追加
+  attr_accessor :login
 
   # 新規登録時のバリデーション
   validates :id, presence: true, length: { in: 1..15 }, uniqueness: true
@@ -23,6 +27,15 @@ class User < ApplicationRecord
       if ( time - user.deleted_at ) > 1.weeks
         user.really_destroy!
       end
+    end
+  end
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["id = :value OR lower(email) = lower(:value)", { :value => login }]).first
+    else
+      where(conditions).first
     end
   end
 end
