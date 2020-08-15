@@ -5,9 +5,11 @@ class WordsController < ApplicationController
   def about
   end
 
-  # 投稿一覧 全ワードのうち公開中のもののみ取得
+  # 投稿一覧（公開中の投稿のみ取得）
   def index
-    @tags = Tag.order(:id).limit(10).offset(0)
+    # wordと関連性のあるタグのみ取得し、タグ重複分を削除
+    @tags = Tag.joins(:words).uniq
+    # いいね数上位10件を取得
     @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])

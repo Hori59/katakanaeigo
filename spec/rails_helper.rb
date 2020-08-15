@@ -66,4 +66,9 @@ RSpec.configure do |config|
   #sign_inヘルパーをRspecで使えるようにする
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include FactoryBot::Syntax::Methods
+
+
+  # config.when_first_matching_example_defined(:require_login) do
+  #   require 'support/login'
+  # end
 end

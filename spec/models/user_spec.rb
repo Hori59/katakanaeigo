@@ -16,21 +16,21 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "名前" do
-      it "名前がなければエラーメッセージが表示されること" do
+    context "name" do
+      it "nameがなければエラーメッセージが表示されること" do
         user = build(:user, name: "")
         user.valid?
         expect(user.errors).to be_added(:name, :blank)
       end
     end
 
-    context "メールアドレス" do
-      it "メールアドレスがなければエラーメッセージが表示されること" do
+    context "email" do
+      it "emailがなければエラーメッセージが表示されること" do
         user = build(:user, email: "")
         user.valid?
         expect(user.errors).to be_added(:email, :blank)
       end
-      it "メールアドレスが重複していればエラーメッセージが表示されること" do
+      it "emailが重複していればエラーメッセージが表示されること" do
         user1 = create(:user,
           id:       "test100",
           name:     "テストアカウント100",
@@ -48,8 +48,8 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "パスワード" do
-      it "パスワードがなければエラーメッセージが表示されること" do
+    context "password" do
+      it "passwordがなければエラーメッセージが表示されること" do
         user = build(:user, password: "")
         user.valid?
         expect(user.errors).to be_added(:password, :blank)
@@ -57,11 +57,4 @@ RSpec.describe User, type: :model do
     end
 
   end
-
-  describe "ログイン時のバリデーション" do
-    context "idもしくはメールアドレスとパスワードがあれば有効な状態であること"
-    context "idもしくはメールアドレスがなければエラーメッセージが表示されること"
-    context "パスワードがなければエラーメッセージが表示されること"
-  end
-
 end

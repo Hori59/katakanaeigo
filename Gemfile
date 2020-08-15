@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
+  gem 'faker' # 仮データ作成用
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -78,7 +79,6 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem 'pry-byebug', group: :development # デバッグ作業用
-gem 'faker', group: :development # 仮データ作成用
 
 # ビューを整える用
 gem 'bootstrap-sass', '~> 3.3.6'
