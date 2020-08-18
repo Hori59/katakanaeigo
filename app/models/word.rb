@@ -34,7 +34,4 @@ class Word < ApplicationRecord
     end
   end
 
-  def get_only_exists_tag(tags)
-    tags.find_each { |tag| tag.words.exists? }
-  end
 end

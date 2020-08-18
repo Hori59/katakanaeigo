@@ -1,16 +1,13 @@
 class WordsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :get_tag_and_ranking, only: [:index, :show, :search]
 
   def about
   end
 
   # 投稿一覧（公開中の投稿のみ取得）
   def index
-    # wordと関連性のあるタグのみ取得し、タグ重複分を削除
-    @tags = Tag.joins(:words).uniq
-    # いいね数上位10件を取得
-    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])
       @words = tag.words.includes(user: :favorites, user: :comments).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
@@ -50,13 +47,8 @@ class WordsController < ApplicationController
 
   # 投稿詳細表示
   def show
-    @tags = Tag.order(:id).limit(10).offset(0)
-    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     @word = Word.find(params[:id])
     @comment = Comment.new
-    @tags = Tag.includes(:words)
-    # @tag_list = @word.tags
-    # binding.pry
   end
 
   # 投稿編集画面表示
@@ -102,10 +94,9 @@ class WordsController < ApplicationController
 
   # 検索機能
   def search
-    @tags = Tag.order(:id).limit(10).offset(0)
-    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
     @words = Word.includes(user: :favorites, user: :comments).where(['name LIKE ?', "%#{params[:search]}%"]).where(is_published: true).order(created_at: :desc).page(params[:page]).per(12)
   end
+
 
   private
 
@@ -121,5 +112,12 @@ class WordsController < ApplicationController
       flash[:message] = "アクセス権がありません"
       redirect_to root_path
     end
+  end
+
+  def get_tag_and_ranking
+    # wordと関連性のあるタグのみ取得し、タグ重複分を削除
+    @tags = Tag.joins(:words).uniq
+    # いいね数上位10件を取得
+    @all_ranks = Word.find(Favorite.group(:word_id).order('count(word_id) desc').limit(10).pluck(:word_id))
   end
 end
