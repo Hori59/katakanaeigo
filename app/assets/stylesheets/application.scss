@@ -130,16 +130,11 @@ header {
   .log_in {
     background-color: #FFB359;
     border: 2px solid #FFF;
-    // outline-offset: -2px;
   }
 }
 .header_list li:first-child {
   margin-right: auto;
 }
-
-// html a {
-//   color: #555555;
-//   text-decoration: none;
 
 //フッター
 .container {
@@ -149,7 +144,6 @@ header {
   margin-top: 20px;
 }
 footer {
-  // z-index: 10;
   padding: 0 40px;
   background-color: #666666;
   height: 100px;
@@ -172,7 +166,6 @@ h2 {
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-  // color: #FF5810;
 }
 
 //サイドメニュー
@@ -186,9 +179,6 @@ h2 {
     h2 {
       color: #FF5810;
     }
-    // .border {
-    //   border: 1px solid rgb(221, 221, 221);
-    // }
     .tag_list {
       padding: 0 10px;
     }
@@ -206,29 +196,12 @@ h2 {
 .form-group {
   display: flex;
   justify-content: space-between;
-  // align-items: center;
 }
 .form-group .form-label {
   width: 150px;
+  font-size: 1.2rem;
 }
 .form-group .form-control {
   width: 420px;
-  font-size: 0.8rem;
-}
-// textarea {
-//   resize: auto;
-//   max-width: 500px;
-//   max-height: 500px;
-//   min-width: 100px;
-//   min-height: 100px;
-//   width: 400px;
-//   // height: 1000px;
-// }
-
-//戻るボタン
-.back_btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-
+  font-size: 1.2rem;
 }

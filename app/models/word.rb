@@ -33,4 +33,5 @@ class Word < ApplicationRecord
       self.tags << word_tag
     end
   end
+
 end
