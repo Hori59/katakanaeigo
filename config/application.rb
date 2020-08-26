@@ -22,7 +22,7 @@ module Katakanaeigo
         helper_specs: false,
         routing_specs: false,
         controller_specs: false,
-        request_specs: true
+        request_specs: false
 
       # fixtureの代わりにfactory_botを使うよう設定
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
